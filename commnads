@@ -1,0 +1,7 @@
+First build the image and push to registry
+Then create a manifest file to pull the image and deplo in kubernetes
+
+
+#Image building
+docker build -t 
+
