@@ -1,7 +1,21 @@
-First build the image and push to registry
-Then create a manifest file to pull the image and deplo in kubernetes
+1. Build the image and push to registry
+2. Then create a manifest file to pull the image and deploy in kubernetes
 
 
-#Image building
-docker build -t 
+# create the namespace 
+kubectl apply -f namespace.yaml
+
+# build image
+docker build -t haripalepu/mongodb:v1 .
+
+# push to docker hub
+docker login 
+enter username and password
+docker push haripalepu/mongodb:v1
+
+
+# Run the application
+create a manifest file in the same folder 
+
+
 

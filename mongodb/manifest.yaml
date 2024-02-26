@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment    
+metadata:
+  name: mongodb  #Name of the deployment 
+  namespace: roboshop #Name of the namespace
+  labels: #These labels are deployment labels
+    app: mongodb
+    project: roboshop
+    tier: db
+spec: #Replica set
+  replicas: 1
+  selector:
+    matchLabels: #These labels are used to find the pods
+      app: mongodb
+      project: roboshop
+      tier: db
+  template: #Pod definition
+    metadata:
+      labels: #These labels are pod labels
+        app: mongodb
+        project: roboshop
+        tier: db
+    spec:
+      containers:
+      - name: mongodb #Name of the container
+        image: haripalepu/mongodb:v1  #Name of the iamge
+        imagePullPolicy: Always   #Pull the image every time
+---
+apiVersion: v1  #Service definition
+kind: Service   #Mongodb should not exposed to outside, By default cluster ip
+metadata:
+  name: mongodb #Name of the cluster ip
+  namespace: roboshop
+spec:
+  selector:
+    app: mongodb
+    project: roboshop
+    tier: db
+  ports:
+  - protocol: TCP
+    port: 27017 #service-port
+    targetPort: 27017 #container-port
+
+# Deployment set can change/update the version of applcations.
+
+# To get list of deployment sets
+# kubectl get deployment
