@@ -84,10 +84,7 @@ data:  #The roboshop.conf data is added here in configmap
             root   /usr/share/nginx/html;
         }
 
-        location /api/catalogue/ {
-          proxy_pass http://catalogue:8080/;
-        }
-
+   
 
 
 
