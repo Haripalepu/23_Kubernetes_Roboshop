@@ -26,4 +26,7 @@ kubens <Namespace_name>
  
 
 
+kubectl logs <pod_name>
+
+
 

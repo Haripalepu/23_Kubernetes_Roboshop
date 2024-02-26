@@ -4,7 +4,7 @@ metadata:
   name: web
   namespace: roboshop
 data:  #The roboshop.conf data is added here in configmap 
-  nginx.conf: |
+  nginx.conf: |   #Mounting this nginx.config as volume, ref line num 137
     user www-data;
     worker_processes 4;
     pid /var/run/nginx.pid;
@@ -127,7 +127,7 @@ spec:
     spec:
       containers:
       - name: web
-        image: joindevops/web:v1
+        image: haripalepu/web:v1
         imagePullPolicy: Always
         volumeMounts:
         - name: nginx-conf
