@@ -15,7 +15,9 @@ docker push haripalepu/mongodb:v1
 
 
 # Run the application
-create a manifest file in the same folder 
+create a manifest file in the same folder
+kubectl apply -f manifest.yaml
+ 
 
 
 

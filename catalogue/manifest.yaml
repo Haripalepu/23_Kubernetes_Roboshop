@@ -1,0 +1,53 @@
+apiVersion: v1
+kind: ConfigMap  #Configmap
+metadata:
+  name: catalogue #Name of the configmap
+  namespace: roboshop
+data:
+  MONGO: "true" #Ref decker file 5th line 
+---
+apiVersion: apps/v1
+kind: Deployment #Deployment set 
+metadata:
+  name: catalogue
+  namespace: roboshop
+  labels: # these labels are deployment labels
+    app: catalogue
+    project: roboshop
+    tier: app
+spec:
+  replicas: 1 #Replica set
+  selector:
+    matchLabels: # these labels are used to find the pods
+      app: catalogue
+      project: roboshop
+      tier: app
+  template:  #Pod definition
+    metadata:
+      labels: # these labels are pod labels
+        app: catalogue
+        project: roboshop
+        tier: app
+    spec:
+      containers:
+      - name: catalogue
+        image: haripalepu/catalogue:v1
+        imagePullPolicy: Always
+        envFrom:
+        - configMapRef:
+            name: catalogue 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: catalogue
+  namespace: roboshop
+spec:
+  selector:
+    app: catalogue
+    project: roboshop
+    tier: app
+  ports:
+  - protocol: TCP
+    port: 8080 #service-port
+    targetPort: 8080 #container-port
