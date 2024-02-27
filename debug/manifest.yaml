@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: debug
+  namespace: roboshop
+spec:
+  # list of containers
+  containers:
+  - name: debug
+    image: haripalepu/debug:v1
+    #here with this line port will not be opened, just for information
+    command: ["sleep", "100000"] #We need something to make the pod up and running to debug
+
+
+  ## To debug the pods we are using a seperate container where we install required packages like telnet, netstat etc which are not available in app and dp container to debug
