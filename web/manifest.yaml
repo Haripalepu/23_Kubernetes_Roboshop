@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: web
   namespace: roboshop
-data:
+data: #Creating a configmap file and mounting it as volume line 132
   nginx.conf: |
     user www-data;
     worker_processes 4;
@@ -96,7 +96,13 @@ data:
           proxy_pass http://cart:8080/;
         }
 
+        location /api/shipping/ {
+          proxy_pass http://shipping:8080/;
+        }
 
+        location /api/payment/ {
+          proxy_pass http://payment:8080/;
+        }
 
 
     }
