@@ -13,7 +13,7 @@ kind: Deployment
 metadata:
   name: cart
   namespace: roboshop
-  labels: # these labels are deployment labels
+  labels: # these labels are deployment labels.
     app: cart
     project: roboshop
     tier: app
